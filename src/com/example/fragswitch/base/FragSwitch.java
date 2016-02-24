@@ -45,6 +45,9 @@ public class FragSwitch {
 	public FragSwitch(FragmentActivity fragmentActivity,
 			int fragmentContentId,ArrayList<BaseFragment> fragments) {
 		this.fragments = fragments;
+		/**
+		 * 啦啦啦啦啦德玛西亚
+		 */
 		this.fragmentActivity = fragmentActivity;
 		this.fragmentContentId = fragmentContentId;
 
