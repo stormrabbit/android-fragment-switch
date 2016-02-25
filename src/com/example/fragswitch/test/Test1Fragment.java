@@ -1,5 +1,6 @@
 package com.example.fragswitch.test;
 
+import android.R.integer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import com.example.fragswitch.MainActivity;
 import com.example.fragswitch.R;
 import com.example.fragswitch.base.BaseFragment;
+import com.example.fragswitch.base.FragSwitch;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -33,23 +35,26 @@ public class Test1Fragment extends BaseFragment implements OnClickListener{
 
 	@Override
 	public void initData() {
-		ivShow.setImageResource(R.drawable.test_0);
+		int backgroundResId = getArguments().getInt("backgroundResId");
+		ivShow.setImageResource(backgroundResId);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId() == R.id.btn_next){
+		if (v.getId() == R.id.btn_pre) {
 			onPre();
-		}else{
+		} else {
 			onNext();
 		}
 	}
 
 	private void onNext() {
-		Bundle bundle = getArguments();
-		int index = bundle.getInt("index");
+		getArguments().putInt("backgroundResId", R.drawable.test_2);
 		MainActivity activity = (MainActivity) getActivity();
-		activity.showTab(index+1);
+		FragSwitch fragSwitch = activity.getSwitch();
+		if (fragSwitch != null) {
+			fragSwitch.onCheckedChanged(fragSwitch.getCurrentTab() + 1);
+		}
 	}
 
 	private void onPre() {

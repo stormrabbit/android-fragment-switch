@@ -36,9 +36,9 @@ public class Test4Fragment extends BaseFragment implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		if(v.getId() == R.id.btn_next){
+		if (v.getId() == R.id.btn_pre) {
 			onPre();
-		}else{
+		} else {
 			onNext();
 		}
 	}

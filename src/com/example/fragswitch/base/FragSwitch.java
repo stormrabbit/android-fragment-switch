@@ -23,8 +23,8 @@ public class FragSwitch {
 	private OnRgsExtraCheckedChangedListener onRgsExtraCheckedChangedListener; // 用于让调用者在切换tab时候增加新的功能
 
 
-	public FragSwitch(FragmentActivity fragmentActivity,
-			ArrayList<BaseFragment> fragments, int fragmentContentId, int index) {
+	public FragSwitch(FragmentActivity fragmentActivity,int fragmentContentId, 
+			ArrayList<BaseFragment> fragments, int index) {
 		this(fragmentActivity, fragmentContentId,fragments);
 		currentTab = index;
 		
@@ -45,9 +45,6 @@ public class FragSwitch {
 	public FragSwitch(FragmentActivity fragmentActivity,
 			int fragmentContentId,ArrayList<BaseFragment> fragments) {
 		this.fragments = fragments;
-		/**
-		 * 啦啦啦啦啦德玛西亚
-		 */
 		this.fragmentActivity = fragmentActivity;
 		this.fragmentContentId = fragmentContentId;
 
