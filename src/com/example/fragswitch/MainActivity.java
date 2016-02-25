@@ -26,36 +26,13 @@ public class MainActivity extends BaseActivity {
 	}
 
 	public void initFragment() {
+		bundle = new Bundle();
 		fragments = new ArrayList<BaseFragment>();
 		Test1Fragment test0Fragment = new Test1Fragment();
-		Bundle bundle0 = new Bundle();
-		bundle0.putInt("index", 0);
-		test0Fragment.setArguments(bundle0);
-		
-		
 		Test1Fragment test1Fragment = new Test1Fragment();
-		Bundle bundle1 = new Bundle();
-		bundle1.putInt("index", 1);
-		test0Fragment.setArguments(bundle0);
-		
-		
 		Test1Fragment test2Fragment = new Test1Fragment();
-		
-		Bundle bundle2 = new Bundle();
-		bundle2.putInt("index", 2);
-		test0Fragment.setArguments(bundle0);
-		
 		Test1Fragment test3Fragment = new Test1Fragment();
-		
-		Bundle bundle3 = new Bundle();
-		bundle3.putInt("index", 3);
-		test0Fragment.setArguments(bundle0);
-		
 		Test1Fragment test4Fragment = new Test1Fragment();
-		
-		Bundle bundle4 = new Bundle();
-		bundle4.putInt("index", 4);
-		test0Fragment.setArguments(bundle0);
 		
 		
 		fragments.add(test0Fragment);
