@@ -32,30 +32,23 @@ public class FragTabSwitch implements RadioGroup.OnCheckedChangeListener{
 		this.fragmentActivity = fragmentActivity;
 		this.fragmentContentId = fragmentContentId;
 
-		// 默认显示第一页
-		FragmentTransaction ft = fragmentActivity.getSupportFragmentManager()
-				.beginTransaction();
-		ft.add(fragmentContentId, fragments.get(0));
-		ft.commit();
-		rgs.setOnCheckedChangeListener(this);
 	}
 	
 	public FragTabSwitch(FragmentActivity fragmentActivity,
 			ArrayList<BaseFragment> fragments, int fragmentContentId,
 			RadioGroup rgs,int index) {
-		this.fragments = fragments;
-		this.rgs = rgs;
-		this.fragmentActivity = fragmentActivity;
-		this.fragmentContentId = fragmentContentId;
+		this(fragmentActivity, fragments, fragmentContentId, rgs);
 
-		// 默认显示第一页
-		FragmentTransaction ft = fragmentActivity.getSupportFragmentManager()
-				.beginTransaction();
-		ft.add(fragmentContentId, fragments.get(index));
-		try {
+                                                                                                                                                                                                                                                                                		// 默认显示第一页
+		BaseFragment baseFragment = fragments.get(index);
+		if (baseFragment.isAdded()) {
+			// fragment.onStart(); // 启动目标tab的onStart()
+			baseFragment.onResume(); // 启动目标tab的onResume()
+		} else {
+			FragmentTransaction ft = fragmentActivity.getSupportFragmentManager()
+					.beginTransaction();
+			ft.add(fragmentContentId, fragments.get(index));
 			ft.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		rgs.setOnCheckedChangeListener(this);
 	}

@@ -10,8 +10,9 @@ import android.support.v4.app.FragmentTransaction;
 import com.example.fragswitch.R;
 
 /**
- * Created with IntelliJ IDEA. Author: wangjie email:tiantian.china.2@gmail.com
- * Date: 13-10-10 Time: 上午9:25
+ * fragment切换用的容器
+ * @author Administrator
+ *
  */
 public class FragSwitch {
 	private List<BaseFragment> fragments; // 一个tab页面对应一个Fragment
