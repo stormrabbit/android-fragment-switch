@@ -22,7 +22,15 @@ public class FragSwitch {
 
 	private OnRgsExtraCheckedChangedListener onRgsExtraCheckedChangedListener; // 用于让调用者在切换tab时候增加新的功能
 
-
+	/**
+	 * 
+	 * 构造函数一
+	 * 创建一个fragment的tab页面,并默认显示第index页
+	 * @param fragmentActivity fragment所在的activity
+	 * @param fragmentContentId 替换fragment 的布局
+	 * @param fragments 包含fragment 的集合
+	 * @param index
+	 */
 	public FragSwitch(FragmentActivity fragmentActivity,int fragmentContentId, 
 			ArrayList<BaseFragment> fragments, int index) {
 		this(fragmentActivity, fragmentContentId,fragments);
@@ -39,9 +47,19 @@ public class FragSwitch {
 			ft.add(fragmentContentId, fragments.get(index));
 			ft.commit();
 		}
-
 	}
 
+	
+	/**
+	 * 
+	 * 构造函数二
+	 * 创建一个fragment的tab页面
+	 * 注:用此构造方法需要指定默认显示的页面,否则会崩溃
+	 * @param fragmentActivity fragment所在的activity
+	 * @param fragmentContentId 替换fragment 的布局
+	 * @param fragments 包含fragment 的集合
+	 * @param index
+	 */
 	public FragSwitch(FragmentActivity fragmentActivity,
 			int fragmentContentId,ArrayList<BaseFragment> fragments) {
 		this.fragments = fragments;
@@ -50,7 +68,12 @@ public class FragSwitch {
 
 	}
 
-	public void onCheckedChanged(int index) {
+	/**
+	 * 显示第index页
+	 * @param index 需要显示的页数
+	 */
+	public void switchTab(int index) {
+		
 		if (index == currentTab) {
 			return;
 		}
@@ -65,37 +88,33 @@ public class FragSwitch {
 			ft.add(fragmentContentId, fragment);
 			ft.commit();
 		}
-
 		showTab(index); // 显示目标tab
 
 		// 如果设置了切换tab额外功能功能接口
-
+		if (this.onRgsExtraCheckedChangedListener != null) {
+			onRgsExtraCheckedChangedListener.OnRgsExtraCheckedChanged(index,
+					getCurrentFragment());
+		}
 	}
 
 	/**
-	 * 切换tab
-	 * 
+	 * 根据需要显示的页数进行确定动画效果
 	 * @param idx
 	 */
-	private void showTab(int idx) {
+	private void showTab(int index) {
 
 		for (int i = 0; i < fragments.size(); i++) {
 			Fragment fragment = fragments.get(i);
 			FragmentTransaction ft = obtainFragmentTransaction(i);
 
-			if (idx == i) {
+			if (index == i) {
 				ft.show(fragment);
 			} else {
 				ft.hide(fragment);
 			}
 			ft.commit();
 		}
-
-		if (this.onRgsExtraCheckedChangedListener != null) {
-			onRgsExtraCheckedChangedListener.OnRgsExtraCheckedChanged(idx,
-					getCurrentFragment());
-		}
-		currentTab = idx; // 更新目标tab为当前tab
+		currentTab = index; // 更新目标tab为当前tab
 	}
 
 	/**
@@ -109,15 +128,18 @@ public class FragSwitch {
 				.beginTransaction();
 		// 设置切换动画
 		if (index > currentTab) {
-			ft.setCustomAnimations(R.anim.slide_left_in, R.anim.slide_left_out);
+			ft.setCustomAnimations(in_in, in_out);
 		} else {
-			ft.setCustomAnimations(R.anim.slide_right_in,
-					R.anim.slide_right_out);
+			ft.setCustomAnimations(out_in,out_out);
 		}
-
 		return ft;
 	}
 
+	public int in_in = R.anim.slide_left_in;
+	public int in_out = R.anim.slide_left_out;
+	public int out_in = R.anim.slide_right_in;
+	public int out_out = R.anim.slide_right_out;
+	
 	public int getCurrentTab() {
 		return currentTab;
 	}
