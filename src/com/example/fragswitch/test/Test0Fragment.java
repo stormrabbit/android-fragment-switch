@@ -52,7 +52,7 @@ public class Test0Fragment extends BaseFragment implements OnClickListener {
 		MainActivity activity = (MainActivity) getActivity();
 		FragSwitch fragSwitch = activity.getSwitch();
 		if (fragSwitch != null) {
-			fragSwitch.onCheckedChanged(fragSwitch.getCurrentTab() + 1);
+			fragSwitch.switchTab(fragSwitch.getCurrentTab() + 1);
 		}
 	}
 

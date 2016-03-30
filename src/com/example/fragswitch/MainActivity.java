@@ -60,13 +60,13 @@ public class MainActivity extends BaseActivity {
 	public void showTab(int index) {
 		BaseFragment baseFragment = fragments.get(index);
 		baseFragment.setArguments(this.bundle);
-		fragSwitch.onCheckedChanged(index);
+		fragSwitch.switchTab(index);
 	}
 
 	@Override
 	public void onBackPressed() {
 		if (fragSwitch.getCurrentTab() > 0) {
-			fragSwitch.onCheckedChanged(fragSwitch.getCurrentTab() - 1);
+			fragSwitch.switchTab(fragSwitch.getCurrentTab() - 1);
 		} else {
 			super.onBackPressed();
 		}

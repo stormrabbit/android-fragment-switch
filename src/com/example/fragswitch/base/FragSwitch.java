@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import com.example.fragswitch.R;
 
 /**
- * fragment切换用的容器
- * @author Administrator
+ * 
+ * @author 龙骑将杨影枫
  *
  */
 public class FragSwitch {
@@ -141,10 +141,18 @@ public class FragSwitch {
 	public int out_in = R.anim.slide_right_in;
 	public int out_out = R.anim.slide_right_out;
 	
+	/**
+	 * 获取当前的页面
+	 * @return
+	 */
 	public int getCurrentTab() {
 		return currentTab;
 	}
 
+	/**
+	 * 获取当前的fragment
+	 * @return
+	 */
 	public Fragment getCurrentFragment() {
 		return fragments.get(currentTab);
 	}
