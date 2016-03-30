@@ -10,8 +10,9 @@ import android.widget.RadioGroup;
 import com.example.fragswitch.R;
 
 /**
- * Created with IntelliJ IDEA. Author: wangjie email:tiantian.china.2@gmail.com
- * Date: 13-10-10 Time: 上午9:25
+ * 
+ * @author 龙骑将杨影枫
+ *
  */
 public class SubFragSwitch {
 	private List<BaseFragment> fragments; // 一个tab页面对应一个Fragment

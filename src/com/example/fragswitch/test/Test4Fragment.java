@@ -5,8 +5,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.fragswitch.MainActivity;
 import com.example.fragswitch.R;
 import com.example.fragswitch.base.BaseFragment;
+import com.example.fragswitch.base.FragSwitch;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -44,11 +46,16 @@ public class Test4Fragment extends BaseFragment implements OnClickListener{
 	}
 
 	private void onNext() {
-		
+
 	}
 
 	private void onPre() {
-		
+		getArguments().putInt("backgroundResId", R.drawable.test_4);
+		MainActivity activity = (MainActivity) getActivity();
+		FragSwitch fragSwitch = activity.getSwitch();
+		if (fragSwitch != null) {
+			fragSwitch.switchTab(fragSwitch.getCurrentTab() + 1);
+		}
 	}
 
 }

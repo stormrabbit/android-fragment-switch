@@ -57,7 +57,12 @@ public class Test3Fragment extends BaseFragment implements OnClickListener{
 	}
 
 	private void onPre() {
-		
+		getArguments().putInt("backgroundResId", R.drawable.test_4);
+		MainActivity activity = (MainActivity) getActivity();
+		FragSwitch fragSwitch = activity.getSwitch();
+		if (fragSwitch != null) {
+			fragSwitch.switchTab(fragSwitch.getCurrentTab() - 1);
+		}
 	}
 
 }
